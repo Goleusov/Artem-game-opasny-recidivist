@@ -551,7 +551,7 @@ const type = Phaser.Utils.Array.GetRandom(types);
 
                 case 'slow':
 
-                    this.player.setSpeed(170);
+                    this.player.setSpeed(110);
 
                     this.showBonusText(
                         debuff.message
@@ -921,7 +921,7 @@ private checkBonusCollisions() {
 
                 case 'speed':
 
-                    this.player.setSpeed(400);
+                    this.player.setSpeed(260);
                     
                     
   		    this.showBonusText( bonus.message );
@@ -1112,38 +1112,38 @@ this.startBonusTimer();
 private getEnemySpeed(): number {
 
 if (this.score >= 300) {
-        return 510;
+        return 340;
     }
 
 if (this.score >= 250) {
-        return 480;
+        return 320;
     }
 
 if (this.score >= 200) {
-        return 450;
-    }
-
-if (this.score >= 150) {
-        return 420;
-    }
-
-if (this.score >= 100) {
-        return 360;
-    }
-
-    if (this.score >= 60) {
         return 300;
     }
 
-    if (this.score >= 40) {
-        return 270;
+if (this.score >= 150) {
+        return 280;
     }
 
-    if (this.score >= 20) {
+if (this.score >= 100) {
         return 240;
     }
 
-    return 200;
+    if (this.score >= 60) {
+        return 200;
+    }
+
+    if (this.score >= 40) {
+        return 180;
+    }
+
+    if (this.score >= 20) {
+        return 160;
+    }
+
+    return 133;
 }
 
     private spawnEnemy() {

@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 import { VirtualJoystick } from '../controls/VirtualJoystick';
 
 export class Player extends Phaser.GameObjects.Sprite {
-    private normalSpeed = 270;
-    private speed = 270;
+    private normalSpeed = 160;
+    private speed = 160;
     private joystick?: VirtualJoystick;
     private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
 
