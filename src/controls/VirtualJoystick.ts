@@ -16,7 +16,7 @@ export class VirtualJoystick {
     constructor(scene: Phaser.Scene) {
         this.scene = scene;
 
-        const width = scene.scale.width;
+        //const width = scene.scale.width;
         const height = scene.scale.height;
 
         // Основа джойстика

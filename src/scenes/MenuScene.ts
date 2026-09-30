@@ -34,7 +34,7 @@ export class MenuScene extends Phaser.Scene {
         );
 
         // Затемнение фона
-        const overlay = this.add.rectangle(
+       this.add.rectangle(
             this.GAME_WIDTH / 2,
             this.GAME_HEIGHT / 2,
             this.GAME_WIDTH,

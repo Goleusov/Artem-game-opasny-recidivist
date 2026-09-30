@@ -3,7 +3,11 @@ import { Player } from '../entities/Player';
 import { VirtualJoystick } from '../controls/VirtualJoystick';
 import { Enemy } from '../entities/Enemy';
 import { Bonus } from '../entities/Bonus';
+import type { BonusType } from '../entities/Bonus';
 import { Debuff } from '../entities/Debuff';
+import type { DebuffType } from '../entities/Debuff';
+//import { Debuff, DebuffType } from '../entities/Debuff';
+
 
 export class GameScene extends Phaser.Scene {
 
@@ -364,14 +368,14 @@ this.createArena();
 
         if (distance >= minDistanceFromPlayer) {
 
-            const types = [
+          const types: DebuffType[] = [
     'slow',
     'minus-points',
     'cook',
     'wobble'
-] as const;
+];
 
-            const type = Phaser.Utils.Array.GetRandom(types);
+const type = Phaser.Utils.Array.GetRandom(types);
 
             const debuff = new Debuff(
                 this,
@@ -407,7 +411,7 @@ this.createArena();
     
     
     
-    private getCurrentMusic(): Phaser.Sound.BaseSound | undefined {
+   /* private getCurrentMusic(): Phaser.Sound.BaseSound | undefined {
     const sounds = this.sound.getAll();
 
     for (const sound of sounds) {
@@ -417,27 +421,21 @@ this.createArena();
     }
 
     return undefined;
-}
+}*/
     
     
     
    private playRandomMusic() {
-    const existingMusic = this.getCurrentMusic();
-
-    if (existingMusic && existingMusic.isPlaying) {
-        this.currentMusic = existingMusic;
+    // Если музыка уже играет — ничего не делаем
+    if (this.currentMusic && this.currentMusic.isPlaying) {
         return;
     }
 
-    let track = Phaser.Utils.Array.GetRandom(
-        this.musicTracks
-    );
+    let track = Phaser.Utils.Array.GetRandom(this.musicTracks);
 
     if (this.musicTracks.length > 1) {
         while (track === this.lastMusicTrack) {
-            track = Phaser.Utils.Array.GetRandom(
-                this.musicTracks
-            );
+            track = Phaser.Utils.Array.GetRandom(this.musicTracks);
         }
     }
 
@@ -446,7 +444,6 @@ this.createArena();
     const key = `music-${track}`;
 
     if (!this.cache.audio.exists(key)) {
-
         this.load.audio(
             key,
             `/assets/music/${track}.mp3`
@@ -724,13 +721,13 @@ this.createArena();
 
         if (distance >= minDistanceFromPlayer) {
 
-            const types = [
-                'speed',
-                'points',
-                'life',
-            ] as const;
+            const types: BonusType[] = [
+    'speed',
+    'points',
+    'life',
+];
 
-            const type = Phaser.Utils.Array.GetRandom(types);
+const type = Phaser.Utils.Array.GetRandom(types);
 
             const bonus = new Bonus(
                 this,
@@ -748,17 +745,7 @@ this.createArena();
     console.log('Не удалось найти место для бонуса');
 }
 
-private updateLivesDisplay() {
 
-    for (let i = 0; i < this.livesHearts.length; i++) {
-
-        if (i < this.lives) {
-            this.livesHearts[i].setText('❤️');
-        } else {
-            this.livesHearts[i].setText('🖤');
-        }
-    }
-}
 
 
     private createGameOverUI() {
