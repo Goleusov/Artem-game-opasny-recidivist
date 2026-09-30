@@ -722,12 +722,12 @@ const type = Phaser.Utils.Array.GetRandom(types);
         if (distance >= minDistanceFromPlayer) {
 
             const types: BonusType[] = [
-    'speed',
-    'points',
-    'life',
-];
+                'speed',
+                'points',
+                'life',
+            ];
 
-const type = Phaser.Utils.Array.GetRandom(types);
+            const type = Phaser.Utils.Array.GetRandom(types);
 
             const bonus = new Bonus(
                 this,
@@ -738,13 +738,24 @@ const type = Phaser.Utils.Array.GetRandom(types);
 
             this.bonuses.push(bonus);
 
+            // Бонус исчезает через 15 секунд
+            this.time.delayedCall(10000, () => {
+
+                const index = this.bonuses.indexOf(bonus);
+
+                if (index !== -1) {
+                    bonus.destroy();
+                    this.bonuses.splice(index, 1);
+                }
+
+            });
+
             return;
         }
     }
 
     console.log('Не удалось найти место для бонуса');
 }
-
 
 
 
@@ -921,7 +932,7 @@ private checkBonusCollisions() {
 
                 case 'speed':
 
-                    this.player.setSpeed(260);
+                    this.player.setSpeed(230);
                     
                     
   		    this.showBonusText( bonus.message );
@@ -1112,35 +1123,35 @@ this.startBonusTimer();
 private getEnemySpeed(): number {
 
 if (this.score >= 300) {
-        return 340;
+        return 275;
     }
 
 if (this.score >= 250) {
-        return 320;
+        return 260;
     }
 
 if (this.score >= 200) {
-        return 300;
+        return 245;
     }
 
 if (this.score >= 150) {
-        return 280;
+        return 230;
     }
 
 if (this.score >= 100) {
-        return 240;
+        return 205;
     }
 
     if (this.score >= 60) {
-        return 200;
-    }
-
-    if (this.score >= 40) {
         return 180;
     }
 
+    if (this.score >= 40) {
+        return 165;
+    }
+
     if (this.score >= 20) {
-        return 160;
+        return 150;
     }
 
     return 133;
